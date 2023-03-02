@@ -11,19 +11,20 @@ const toggleDark = useToggle(isDark)
 </script>
 
 <template>
-  <Header class="">
+  <Header class="dark:bg-dark-blue">
     <button @click="toggleDark()" class="mt-2">
       <div class="flex space-x-2 items-center"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-          stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          stroke-width="1.5" stroke="currentColor" class="w-6 h-6 dark:text-white">
           <path stroke-linecap="round" stroke-linejoin="round"
             d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
         </svg>
-        <p>Dark Mode</p>
+        <p class="dark:text-white">Dark Mode</p>
       </div>
     </button>
 
   </Header>
-  <div class="mx-4 md:mx-24 pt-14 flex flex-col md:flex-row md:justify-between ">
+  <div class="dark:bg-DarkMode-mid-blue">
+  <div class="mx-4 md:mx-24 pt-14 flex flex-col md:flex-row md:justify-between">
     <div>
       <Search />
     </div>
@@ -34,11 +35,13 @@ const toggleDark = useToggle(isDark)
 
   <div class="mt-10 mx-4 md:mx-24">
     <div class="flex flex-col md:flex-row flex-wrap w-full" >
-    <FlagTemplate />
+    <!-- <FlagTemplate /> -->
+    <RouterView />
+
     </div>
   </div>
-
-  <RouterView />
+</div>
+  <!-- <RouterView /> -->
 </template>
 <style scoped>.dark {
   background: black;

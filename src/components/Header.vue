@@ -5,7 +5,7 @@
     <div class="mx-4 md:mx-24">
       <div class="flex justify-between pt-4">
         <div>
-          <h1 class="text-lg md:text-3xl font-extrabold"> Where in the world?</h1>
+          <h1 class="text-lg md:text-3xl font-extrabold dark:text-white"> Where in the world?</h1>
         </div>
         <div>
           <slot></slot>

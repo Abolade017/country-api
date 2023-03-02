@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import CountryFlag from '../views/Flag.vue'
-import HomeView from '../views/HomeView.vue'
+import Flag from '../views/Flag.vue';
+import FlagTemplateVue from '@/components/FlagTemplate.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,12 +8,12 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: FlagTemplateVue
     },
     {
-      path:'/country/:numericcode',
+      path:'/country/:name',
       name:"flag",
-      component: CountryFlag
+      component: Flag
     },
     {
       path: '/about',
