@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full md:w-1/4 bg-white mt-10 cursor-pointer px-4" v-for="i in getCountries" :key="i.numericcode">
+    <div class="w-full md:w-1/4 bg-white rounded-md mt-10 cursor-pointer px-4" v-for="i in getCountries" :key="i.numericcode">
         <div class="w-full shadow-lg" @click="router.push({path:`/country/${i.numericcode}`})">
             <img :src="i.flags.png" alt="" class="h-40 w-full">
             <div class="pl-4 pt-4 pb-10">
