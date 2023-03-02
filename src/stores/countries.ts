@@ -13,7 +13,22 @@ interface Flags {
 	png: string
 }
 interface Name {
-	common: string
+	common: string,
+	nativeName: {
+		nld: {
+			common: String
+		}
+	}
+}
+interface Currencies {
+	EUR: {
+		name: String
+	}
+}
+interface Language {
+	fra: String,
+	nld: String,
+	deu: string
 }
 interface Country {
 	ccn3: number,
@@ -23,7 +38,12 @@ interface Country {
 	population: number,
 	continents: string[],
 	capital: string[];
-	png: string
+	png: string,
+	subregion: string,
+	tld: string[],
+	currencies: Currencies,
+	languages: Language,
+	borders:[]
 }
 interface Region {
 	id: number,
@@ -36,7 +56,12 @@ export const useCountriesStore = defineStore('countries', {
 			country: {
 				ccn3: 0,
 				name: {
-					common: ''
+					common: '',
+					nativeName: {
+						nld: {
+							common: ''
+						}
+					}
 				},
 				flags: {
 					png: ''
@@ -45,11 +70,25 @@ export const useCountriesStore = defineStore('countries', {
 				population: 0,
 				continents: [],
 				capital: [],
-				png: 'string'
+				png: 'string',
+				subregion: '',
+				tld: [],
+				borders:[],
+				currencies: {
+					EUR: {
+						name: ''
+					}
+				},
+				languages: {
+					fra: '',
+					nld: '',
+					deu: ''
+				}
 			},
 			loading: false,
 			name: '',
 			region: 'region',
+
 			regions: [{
 				id: 1,
 				name: 'Africa',
@@ -111,6 +150,7 @@ export const useCountriesStore = defineStore('countries', {
 			let url = `https://restcountries.com/v3.1/name/${name}`;
 			return await axios.get(url).then(({ data }) => {
 				this.country = data[0];
+				console.log(this.country);
 			}).catch((error) => {
 				console.log(error);
 			});
