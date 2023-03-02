@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import Header from './components/Header.vue';
 import { useDark, useToggle } from '@vueuse/core'
-import DropDown from '@/components/DropDown.vue';
+import Header from './components/Header.vue';
 import Search from './components/Search.vue';
+import DropDown from './components/DropDown.vue';
 import FlagTemplate from './components/FlagTemplate.vue';
 
 const isDark = useDark()
@@ -23,7 +23,7 @@ const toggleDark = useToggle(isDark)
     </button>
 
   </Header>
-  <div class=" mx-24 pt-14 flex justify-between ">
+  <div class="mx-4 md:mx-24 pt-14 flex flex-col md:flex-row md:justify-between ">
     <div>
       <Search />
     </div>
@@ -32,8 +32,10 @@ const toggleDark = useToggle(isDark)
     </div>
   </div>
 
-  <div class="mt-10 mx-24">
+  <div class="mt-10 mx-4 md:mx-24">
+    <div class="flex flex-col md:flex-row flex-wrap w-full" >
     <FlagTemplate />
+    </div>
   </div>
 
   <RouterView />

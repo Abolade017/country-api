@@ -13,11 +13,11 @@
         enter-to-class="transform scale-100 opacity-100" leave-active-class="transition duration-75 ease-in"
         leave-from-class="transform scale-100 opacity-100" leave-to-class="transform scale-95 opacity-0">
         <MenuItems
-          class=" mt-2  origin-top-right rounded-md bg-white shadow-sm ring-1 ring-black ring-opacity-5 focus:outline-none">
+          class="absolute w-52 mt-2  origin-top-right rounded-md bg-white shadow-sm ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div class="px-1 py-1" v-for="i in regions" :key="i.id">
             <MenuItem v-slot="{ active }">
             <button :class="[
-              active ? 'bg-violet-500 text-white' : 'text-gray-900',
+              active ? 'bg-LightMode-dark-gray text-white' : 'text-gray-900',
               'group flex w-full items-center rounded-md px-2 py-2 text-sm',
             ]" @click="getRegion(i.name)">
               {{ i.name }}
@@ -31,19 +31,17 @@
   </div>
 </template>
 
-<script setup >
-import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
-import { ChevronDownIcon } from '@heroicons/vue/20/solid'
-import { useCountriesStore } from '../stores/countries.ts'
-import { ref, computed } from 'vue'
+<script setup lang="ts">
+import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
+import { ChevronDownIcon } from '@heroicons/vue/20/solid';
+import { useCountriesStore } from '../stores/countries';
+import { ref, computed } from 'vue';
 const store = useCountriesStore();
 const regions = computed(() => store.allRegion);
-const getRegion = (region) => {
+const getRegion = (region:string) => {
   console.log(region)
   store.region = region;
   store.getRegion();
 }
-// const ref = ''
-
 </script>
 

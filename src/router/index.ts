@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import CountryFlag from '../views/Flag.vue'
 import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
@@ -10,11 +11,16 @@ const router = createRouter({
       component: HomeView
     },
     {
+      path:'/country/:numericcode',
+      name:"flag",
+      component: CountryFlag
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
+      // which is lazy-loaded w../components/AboutView.vueed.
       component: () => import('../views/AboutView.vue')
     }
   ]

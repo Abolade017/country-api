@@ -19,7 +19,7 @@ const searchCountry= ()=>{
                     <MagnifyingGlassIcon class="h-5 w-5 text-gray-400 font-bold" aria-hidden="true" />
                 </div>
                 <input type="search" name="search" v-model="search"
-                    class="block w-96 h-14 rounded-md pl-10 bg-field-purple focus:outline-none focus:ring-none"
+                    class="block w-full md:w-96 h-14 rounded-md pl-10 bg-field-purple focus:outline-none focus:ring-none"
                     placeholder="Search for a country..." />
             </div>
         </div>
