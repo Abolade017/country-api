@@ -39,7 +39,7 @@ import { ref, computed } from 'vue';
 const store = useCountriesStore();
 const regions = computed(() => store.allRegion);
 const getRegion = (region: string) => {
-  console.log(region)
+  // console.log(region)
   store.region = region;
   store.getRegion();
 }

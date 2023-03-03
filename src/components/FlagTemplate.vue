@@ -46,6 +46,7 @@ const router = useRouter();
 const Props = defineProps({
     country: String
 })
+
 const goToCountry = (country: string) => {
     router.push({
         name: 'flag',

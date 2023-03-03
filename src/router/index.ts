@@ -11,9 +11,13 @@ const router = createRouter({
       component: FlagTemplateVue
     },
     {
-      path:'/country/:name',
-      name:"flag",
+      path: '/country/:name',
+      name: "flag",
       component: Flag
+    },
+    { path: '/country/:name',
+      name: 'flagBorder',
+     redirect: { name: 'flag' } 
     },
     {
       path: '/about',

@@ -162,10 +162,10 @@ export const useCountriesStore = defineStore('countries', {
 				.get(url)
 				.then(({ data }) => {
 					this.countries = data;
-					console.log(this.countries);
+					// console.log(this.countries);
 				})
 				.catch((error) => {
-					console.log(error);
+					// console.log(error);
 				})
 				.finally(() => {
 					this.loading = false;
@@ -190,9 +190,9 @@ export const useCountriesStore = defineStore('countries', {
 			// }
 			return await axios.get(url).then(({ data }) => {
 				this.country = data[0];
-				console.log(this.country);
+				// console.log(this.country);
 			}).catch((error) => {
-				console.log(error);
+				// console.log(error);
 			});
 
 		},
@@ -203,11 +203,24 @@ export const useCountriesStore = defineStore('countries', {
 			}
 			return await axios.get(url).then(({ data }) => {
 				this.countries = data;
-				console.log(this.countries);
+				// console.log(this.countries);
 			}).catch((error) => {
-				console.log(error);
+				// console.log(error);
 			})
 		},
+
+		async getCountryByccaCode(code: string){
+			this.loading = true;
+			let url = `https://restcountries.com/v3.1/alpha?codes=${code}`;
+			return await axios
+				.get(url)
+				.then(({ data }) => {
+					this.country = data[0];
+				})
+				.catch((error) => {
+					// console.log(error);
+				});
+		}
 	}
 });
 
