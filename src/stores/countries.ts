@@ -10,11 +10,19 @@ interface State {
 	regions: Region[]
 }
 interface Flags {
-	png: string
+	png: string,
+	alt: string
 }
 interface Name {
 	common: string,
 	nativeName: {
+		fra: {
+			common: string
+		},
+		// nld:{common: string},
+		deu: { common: string },
+		eng: { common: string },
+		ara: { common: string },
 		nld: {
 			common: String
 		}
@@ -26,9 +34,11 @@ interface Currencies {
 	}
 }
 interface Language {
-	fra: String,
-	nld: String,
-	deu: string
+	fra: string,
+	nld: string,
+	deu: string,
+	eng: string,
+	ara: string,
 }
 interface Country {
 	ccn3: number,
@@ -43,7 +53,7 @@ interface Country {
 	tld: string[],
 	currencies: Currencies,
 	languages: Language,
-	borders:[]
+	borders: []
 }
 interface Region {
 	id: number,
@@ -60,11 +70,24 @@ export const useCountriesStore = defineStore('countries', {
 					nativeName: {
 						nld: {
 							common: ''
+						},
+						fra: {
+							common: ''
+						},
+						deu: {
+							common: ''
+						},
+						eng: {
+							common: ''
+						},
+						ara: {
+							common: ''
 						}
 					}
 				},
 				flags: {
-					png: ''
+					png: '',
+					alt: ''
 				},
 				region: '',
 				population: 0,
@@ -73,7 +96,7 @@ export const useCountriesStore = defineStore('countries', {
 				png: 'string',
 				subregion: '',
 				tld: [],
-				borders:[],
+				borders: [],
 				currencies: {
 					EUR: {
 						name: ''
@@ -82,7 +105,9 @@ export const useCountriesStore = defineStore('countries', {
 				languages: {
 					fra: '',
 					nld: '',
-					deu: ''
+					deu: '',
+					eng: '',
+					ara: '',
 				}
 			},
 			loading: false,
@@ -148,6 +173,21 @@ export const useCountriesStore = defineStore('countries', {
 		},
 		async getSearchCountry(name: string) {
 			let url = `https://restcountries.com/v3.1/name/${name}`;
+			// if (this.country.name.nativeName.ara) {
+			// 	return this.country.name.nativeName.ara;
+			// }else if(this.country.name.nativeName.deu){
+			// 	return this.country.name.nativeName.deu;
+
+			// }else if(this.country.name.nativeName.eng){
+			// 	return this.country.name.nativeName.eng;
+
+			// }else if(this.country.name.nativeName.fra){
+			// 	return this.country.name.nativeName.fra;
+
+			// }else if(this.country.name.nativeName.nld){
+			// 	return this.country.name.nativeName.nld;
+
+			// }
 			return await axios.get(url).then(({ data }) => {
 				this.country = data[0];
 				console.log(this.country);
