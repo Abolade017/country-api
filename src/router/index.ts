@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Flag from '../views/Flag.vue';
 import FlagTemplateVue from '@/components/FlagTemplate.vue';
+import BorderFlag from '@/views/BorderFlag.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,8 +18,8 @@ const router = createRouter({
     },
     { path: '/country/:name',
       name: 'flagBorder',
-      // component: Flag
-     redirect: { name: 'flag' }, 
+      component: BorderFlag
+    //  redirect: { name: 'flag' }, 
     },
     {
       path: '/about',
