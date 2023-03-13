@@ -1,7 +1,7 @@
 <template>
   <div class="w-52">
     <Menu as="div" class="inline-block text-left w-full ">
-      <div>
+      <div class="md:mt-0 mt-6">
         <MenuButton
           class="flex space-x-4 rounded-md bg-white dark:bg-dark-blue  dark:text-white shadow-sm h-14  px-10 py-4 text-sm font-medium  hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
           Filter by Region

@@ -162,38 +162,41 @@ export const useCountriesStore = defineStore('countries', {
 				.get(url)
 				.then(({ data }) => {
 					this.countries = data;
-					// console.log(this.countries);
+					console.log(this.countries);
 				})
 				.catch((error) => {
-					// console.log(error);
+					console.log(error);
 				})
 				.finally(() => {
 					this.loading = false;
 				});
 		},
 		async getSearchCountry(name: string) {
+			this.loading = true;
 			let url = `https://restcountries.com/v3.1/name/${name}`;
-			// if (this.country.name.nativeName.ara) {
-			// 	return this.country.name.nativeName.ara;
-			// }else if(this.country.name.nativeName.deu){
-			// 	return this.country.name.nativeName.deu;
+			return await axios
+				.get(url)
+				.then(({ data }) => {
+					this.countries = data;
+					console.log(this.country);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
 
-			// }else if(this.country.name.nativeName.eng){
-			// 	return this.country.name.nativeName.eng;
-
-			// }else if(this.country.name.nativeName.fra){
-			// 	return this.country.name.nativeName.fra;
-
-			// }else if(this.country.name.nativeName.nld){
-			// 	return this.country.name.nativeName.nld;
-
-			// }
-			return await axios.get(url).then(({ data }) => {
-				this.country = data[0];
-				// console.log(this.country);
-			}).catch((error) => {
-				// console.log(error);
-			});
+		},
+		async getCountryDetails(name: string) {
+			this.loading = true;
+			let url = `https://restcountries.com/v3.1/name/${name}`;
+			return await axios
+				.get(url)
+				.then(({ data }) => {
+					this.country = data[0];
+					console.log(this.country);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
 
 		},
 		async getRegion() {
@@ -201,15 +204,18 @@ export const useCountriesStore = defineStore('countries', {
 			if (this.region) {
 				url += `${this.region}`
 			}
-			return await axios.get(url).then(({ data }) => {
-				this.countries = data;
-				// console.log(this.countries);
-			}).catch((error) => {
-				// console.log(error);
-			})
+			return await axios
+				.get(url)
+				.then(({ data }) => {
+					this.countries = data;
+					console.log(this.countries);
+				})
+				.catch((error) => {
+					console.log(error);
+				})
 		},
 
-		async getCountryByccaCode(code: string){
+		async getCountryByccaCode(code: string) {
 			this.loading = true;
 			let url = `https://restcountries.com/v3.1/alpha?codes=${code}`;
 			return await axios
@@ -218,7 +224,7 @@ export const useCountriesStore = defineStore('countries', {
 					this.country = data[0];
 				})
 				.catch((error) => {
-					// console.log(error);
+					console.log(error);
 				});
 		}
 	}

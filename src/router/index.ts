@@ -17,7 +17,8 @@ const router = createRouter({
     },
     { path: '/country/:name',
       name: 'flagBorder',
-     redirect: { name: 'flag' } 
+      component: Flag
+    //  redirect: { name: 'flag' }, 
     },
     {
       path: '/about',

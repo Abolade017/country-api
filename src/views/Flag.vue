@@ -23,18 +23,16 @@
                 <div class="flex flex-col space-y-2">
                     <div class="dark:text-LightMode-dark-gray text-sm"><span
                             class="text-sm dark:text-white text-DarkMode-dark-blue pr-2">Native Name:</span>
-                        <!-- {{formattedCountry.name.nativeName.nld.common }} -->
-                        {{  formattedCountry.nativeName  }}
-                        <!-- <pre>
-                            {{formattedCountry.name.nativeName }}
-                        </pre> -->
+                        {{ formattedCountry.nativeName }}
+
                     </div>
                     <div class="dark:text-LightMode-dark-gray text-sm">
                         <span class="text-sm dark:text-white text-DarkMode-dark-blue pr-2">Population:</span>
                         {{ formattedCountry.population }}
                     </div>
                     <div class="dark:text-LightMode-dark-gray text-sm"><span
-                            class="text-sm dark:text-white text-DarkMode-dark-blue pr-2">Region:</span>{{ formattedCountry.region }}
+                            class="text-sm dark:text-white text-DarkMode-dark-blue pr-2">Region:</span>{{
+                                formattedCountry.region }}
                     </div>
                     <div class="dark:text-LightMode-dark-gray text-sm"><span
                             class="text-sm dark:text-white text-DarkMode-dark-blue pr-2">Sub Region:</span>{{
@@ -49,31 +47,28 @@
                                 formattedCountry.tld[0] }}</div>
                     <div class="dark:text-LightMode-dark-gray text-sm"><span
                             class="text-sm dark:text-white text-DarkMode-dark-blue pr-2">Currencies:</span>
-                        <!-- {{formattedCountry.currencies.EUR.name }}</div> -->
-                        {{  formattedCountry.curr  }}
+                        {{ formattedCountry.curr }}
                         <div class="dark:text-LightMode-dark-gray text-sm">
                             <span class="text-sm dark:text-white text-DarkMode-dark-blue pr-2">Languages:</span>
-                            {{  formattedCountry.langs  }}
+                            {{ formattedCountry.langs }}
                         </div>
                     </div>
                 </div>
-                <div class="mt-6 md:flex-row flex-col flex ">
-                    <div class="text-sm dark:text-white text-DarkMode-dark-blue pr-2 md:pt-2 pt-0 ">Border Countries:</div>
-                    <div class="flex space-x-2 pt-2 pb-20">
-                        <RouterLink
-                            element="a"
-                            :to="{ name: 'flagBorder', params: { name: i }, query: { border: 'yes' } }"
-                            v-for="i in country.borders" 
-                            :key="i"
-                        >
-                            <div class="text-LightMode-dark-gray  bg-white dark:text-white dark:bg-dark-blue rounded-sm text-xs shadow-md h-6 w-20 flex items-center justify-center">
-                                {{ i }}
-                            </div>
-                        </RouterLink>
+            </div>
+            <div class="mt-6 md:flex-row flex-col flex">
+                <div class="text-sm dark:text-white text-DarkMode-dark-blue pr-2 md:pt-2 pt-0 ">Border Countries:</div>
+            </div>
+            <div class="flex space-x-2 pt-2 pb-20">
+                <RouterLink element="a" :to="{ name: 'flagBorder', params: { name: i }, query: { border: 'yes' } }"
+                    v-for="i in country.borders" :key="i">
+                    <div
+                        class="text-LightMode-dark-gray  bg-white dark:text-white dark:bg-dark-blue rounded-sm text-xs shadow-md h-6 w-20 flex items-center justify-center">
+                        {{ i }}
                     </div>
-                </div>
+                </RouterLink>
             </div>
         </div>
+
     </div>
 </template>
 <script setup lang="ts">
@@ -85,8 +80,6 @@ const route = useRoute();
 const router = useRouter();
 const store = useCountriesStore();
 const country = computed(() => store.getCountry);
-
-
 const formattedCountry = computed(() => {
     const nativeNames = country.value.name.nativeName;
     const languages = country.value.languages;
@@ -98,14 +91,14 @@ const formattedCountry = computed(() => {
 
     for (const key in nativeNames) {
         //@ts-ignore
-        nat += `${languages[key]}:${nativeNames[key].common}  \n`;
+        nat = `${nativeNames[key].common}  \n`;
         //@ts-ignore
-        lans += `${languages[key]}, \n`;
+        lans = `${languages[key]} \n`;
     }
 
     for (const key in currencies) {
         //@ts-ignore
-        cur += `${key}:${currencies[key].name}  \n`;
+        cur += `${currencies[key].name}  \n`;
     }
 
     const newObject = {
@@ -122,10 +115,10 @@ const goBack = () => {
 }
 
 onMounted(() => {
-    if(route.query.border == 'yes'){
+    if (route.query.border == 'yes') {
         store.getCountryByccaCode(route.params.name as string);
     } else {
-        store.getSearchCountry(route.params.name as string)
+        store.getCountryDetails(route.params.name as string)
     }
 });
 

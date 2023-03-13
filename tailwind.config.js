@@ -6,6 +6,7 @@ module.exports = {
   ],
   theme: {
     extend: {
+      width:{'100':'30rem'},
       colors: {
         'dark-blue': ' hsl(209, 23%, 22%)',
         'white': 'hsl(0, 0%, 100%)',
